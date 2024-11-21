@@ -17,6 +17,7 @@ public class ConsumerExample {
 		System.out.println();
 		printStudent();
 		printStudentAndHobbies();
+		printStudentByGrade();
 	}
 
 	private static void printStudent() {
@@ -30,6 +31,11 @@ public class ConsumerExample {
 		Consumer<Student> studHobbies = (stud) -> System.out.println(stud.getHobbies());
 		List<Student> studentList = StudentDatabase.getAllStudents();
 		studentList.forEach(studName.andThen(studHobbies)); // consumer chaining
+	}
+	private static void printStudentByGrade() {
+		Consumer<Student> studName = (stud) -> System.out.print(stud.getName() + " : -> " + stud.getGrade() + "\n");
+		List<Student> studentList = StudentDatabase.getAllStudents();
+		studentList.forEach(studName); 
 	}
 
 }
